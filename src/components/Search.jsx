@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import '../Style/Search.css';
 
 class Search extends React.Component {
   constructor() {
@@ -27,14 +28,16 @@ class Search extends React.Component {
     } = this.state;
     return (
       <div data-testid="page-search">
-        <form action="">
+        <form className="Busca" action="">
           <input
+            className="search-input"
             type="text"
             placeholder="Banda ou Artista"
             onChange={ this.onInputChange }
             data-testid="search-artist-input"
           />
           <button
+            className="submit"
             data-testid="search-artist-button"
             type="submit"
             disabled={ bttnDisable }

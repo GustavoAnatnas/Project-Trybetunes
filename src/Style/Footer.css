@@ -1,0 +1,8 @@
+.footer {
+  border-color: 4px solid rgba(128, 128, 128, 58);
+  bottom: 0;
+  box-shadow: -700px 100px 500px 710px  rgb(27, 26, 26);
+  position: inherit;
+  text-align: center;
+  width: 100%;
+}

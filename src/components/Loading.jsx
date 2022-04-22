@@ -2,7 +2,11 @@ import React from 'react';
 
 class Loading extends React.Component {
   render() {
-    return <h1 data-testid="page-loading" className="Load">Carregando...</h1>;
+    return (
+      <div className="load">
+        <h1 data-testid="page-loading">Carregando...</h1>
+      </div>
+    );
   }
 }
 
