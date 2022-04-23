@@ -4,6 +4,7 @@ import Header from './Header';
 import getMusic from '../services/musicsAPI';
 import Loading from './Loading';
 import MusicCard from './MusicCard';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor(props) {
@@ -17,11 +18,29 @@ class Album extends React.Component {
     const { match } = this.props;
     const request = await getMusic(match.params.id);
     const search = request.filter((req) => req.kind === 'song');
+    const favor = await getFavoriteSongs();
     this.setState({
       musics: search,
       albums: request[0],
       load: false,
+      fav: favor,
     });
+  }
+
+  favoriteMusics = async () => {
+    const musics = await getFavoriteSongs();
+    this.setState({
+      fav: musics,
+    });
+  }
+
+  verifyFavorite = (e) => {
+    const { fav } = this.state;
+    const truth = fav.some((f) => f.trackId === e);
+    if (truth === true) {
+      return true;
+    }
+    return false;
   }
 
   render() {
@@ -56,6 +75,8 @@ class Album extends React.Component {
                     previewUrl={ mus.previewUrl }
                     trackId={ mus.trackId }
                     music={ mus }
+                    favoriteMusics={ this.favoriteMusics }
+                    verifyFavorite={ this.verifyFavorite(mus.trackId) }
                   />
                 ))
               }
